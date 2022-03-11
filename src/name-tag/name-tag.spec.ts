@@ -1,7 +1,7 @@
 import { DOM } from '@microsoft/fast-element';
-import './test-rui';
+import './name-tag';
 import { fixture } from '@open-wc/testing-helpers';
-import { NameTag } from './test-rui';
+import { NameTag } from './name-tag';
 
 describe('test name-tag component', () => {
   it('should run an empty test', () => {
