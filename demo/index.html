@@ -9,7 +9,14 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    <fast-button>Hello FAST Button</fast-button>
-    <name-tag greeting="Hello new component"></name-tag>
+    <!-- <fast-button>Hello FAST Button</fast-button> -->
+    <!-- <name-tag greeting="Hello new component"></name-tag> -->
+    <clicky-thing></clicky-thing>
+    <script>
+      const clicky = document.querySelector('clicky-thing');
+      clicky.addEventListener('cleared', (e) => {
+        console.log(e);
+      });
+    </script>
   </body>
 </html>
