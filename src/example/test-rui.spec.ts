@@ -1,21 +1,27 @@
-/**
- * @jest-environment jsdom
- */
-
-import { fixture } from '@open-wc/testing-helpers';
-import { screen } from 'testing-library__dom';
+import { DOM } from '@microsoft/fast-element';
+import './test-rui';
 
 describe('test component', () => {
-  beforeEach(async () => {
-    await fixture(`<name-tag></name-tag>`);
-  });
-
   it('should run an empty test', () => {
     expect(true).toBeTruthy();
   });
 
-  it('has a header', () => {
-    const element = screen.getByRole('heading');
-    expect(element).toBeDefined();
+  it('should render a name-tag component', async () => {
+    const fastEl = document.createElement('name-tag');
+    document.body.appendChild(fastEl);
+    await DOM.nextUpdate();
+    const renderedText2 = document.body
+      .getElementsByTagName('name-tag')[0]
+      .shadowRoot;
+    expect(renderedText2?.querySelector('h3')?.innerHTML).toBe('HELLO');
+
+    fastEl.greeting = 'new greeting';
+    await DOM.nextUpdate();
+
+    const renderedText = document.body
+      .getElementsByTagName('name-tag')[0]
+      .shadowRoot;
+
+    expect(renderedText?.querySelector('h3')?.innerHTML).toBe('NEW GREETING');
   });
 });
